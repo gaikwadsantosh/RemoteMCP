@@ -1,0 +1,29 @@
+# 1️⃣ Use a lightweight Python base image
+FROM python:3.11-slim
+
+# 2️⃣ Set working directory
+WORKDIR /app
+
+# 3️⃣ Install system dependencies (optional, but good for sqlite, ssl, etc.)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential curl && \
+    rm -rf /var/lib/apt/lists/*
+
+# 4️⃣ Copy dependency list first for caching
+COPY requirements.txt .
+
+# 5️⃣ Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# 6️⃣ Copy all project files
+COPY . .
+
+# 7️⃣ Expose port 9000 for FastAPI
+EXPOSE 9000
+
+# 8️⃣ Set environment variables (optional)
+ENV PYTHONUNBUFFERED=1
+ENV PORT=9000
+
+# 9️⃣ Run FastAPI app via uvicorn
+CMD ["python", "backend.py"]

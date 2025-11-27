@@ -1,0 +1,16 @@
+# FastAPI + server dependencies
+fastapi
+uvicorn
+python-multipart
+pydantic
+
+# CORS middleware for FastAPI
+starlette
+
+# Google Gemini client
+google-genai
+
+# Optional (recommended for consistent date/time behavior)
+python-dateutil
+
+fastmcp

@@ -1,0 +1,4 @@
+
+# Streamlit frontend
+streamlit
+fastapi
